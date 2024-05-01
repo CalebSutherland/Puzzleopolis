@@ -56,12 +56,12 @@ public class PlayerMovement : MonoBehaviour
         MovePlayer();
     }
 
-    private void MyInput ()
+    private void MyInput()
     {
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
-        if(Input.GetKey(jumpKey) && readyToJump && grounded)
+        if (Input.GetKey(jumpKey) && readyToJump && grounded)
         {
             readyToJump = false;
 
@@ -75,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
     {
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
-        if(grounded)
+        if (grounded)
             rb.AddForce(moveDirection.normalized * speed * 10f, ForceMode.Force);
 
         else if (!grounded)
@@ -86,7 +86,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
-        if(flatVel.magnitude > speed)
+        if (flatVel.magnitude > speed)
         {
             Vector3 limitedVel = flatVel.normalized * speed;
             rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
