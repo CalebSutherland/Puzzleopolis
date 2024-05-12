@@ -12,7 +12,7 @@ public class PlatformMovement : MonoBehaviour
     void Start()
     {
         initialPosition = transform.position;
-        on = false;
+        on = true;
     }
 
     void Update()
