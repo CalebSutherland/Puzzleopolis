@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5088899689209394308}
   - component: {fileID: 6961618969176165524}
   - component: {fileID: 5387835838635041326}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Elavator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,7 +118,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a44a4a801b124ed48b5ead52eff9be84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementDirection: 0
   movementDistance: 4
   movementSpeed: 2
-  movingUp: 1
+  movingPositive: 1
   startTop: 0
+  on: 0
