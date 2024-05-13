@@ -49,6 +49,10 @@ public class PlayerMovement : MonoBehaviour
             rb.drag = groundDrag;
         else
             rb.drag = 0;
+
+        // Ensure player remains stationary relative to the platform's movement when standing still
+        if (grounded && rb.velocity.magnitude < 0.1f)
+            rb.velocity = Vector3.zero;
     }
 
     private void FixedUpdate()
@@ -73,13 +77,18 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovePlayer()
     {
+        // Move the player relative to world space instead of local space
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+        moveDirection.Normalize();
 
-        if (grounded)
-            rb.AddForce(moveDirection.normalized * speed * 10f, ForceMode.Force);
-
-        else if (!grounded)
-            rb.AddForce(moveDirection.normalized * speed * 10f * airMultiplier, ForceMode.Force);
+        // Apply force only when the player is moving
+        if (moveDirection.magnitude > 0.1f)
+        {
+            if (grounded)
+                rb.AddForce(moveDirection * speed * 10f, ForceMode.Force);
+            else if (!grounded)
+                rb.AddForce(moveDirection * speed * 10f * airMultiplier, ForceMode.Force);
+        }
     }
 
     private void SpeedControl()

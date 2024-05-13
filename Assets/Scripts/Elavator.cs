@@ -113,21 +113,21 @@ public class PlatformMovement : MonoBehaviour
             player.transform.Translate(Vector3.forward * horizontalMovement);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player")) // Check if the collided object is the player
         {
-            player = other.gameObject;
-            other.transform.parent = transform; // Parent the player to the platform
+            player = collision.gameObject; // Assign the player reference
+            player.transform.SetParent(transform, true); // Make the player a child of the platform
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnCollisionExit(Collision collision)
     {
-        if (other.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player")) // Check if the collided object is the player
         {
-            other.transform.parent = null; // Unparent the player from the platform
-            player = null;
+            player.transform.SetParent(null, true); // Unparent the player from the platform
+            player = null; // Reset the player reference
         }
     }
 }
