@@ -2,26 +2,28 @@ using UnityEngine;
 
 public class PlatformMovement : MonoBehaviour
 {
+    public Transform pressurePlate;
+    public Transform basePlate;
     public enum MovementDirection { Vertical, HorizontalX, HorizontalZ } // Enum to define movement direction
     public MovementDirection movementDirection = MovementDirection.Vertical; // Default to vertical movement
     public float movementDistance = 4f; // Total distance the platform moves
     public float movementSpeed = 2f; // Speed of the platform's movement
     private Vector3 initialPosition; // Initial position of the platform
+    private float initialPlatePosition; // Initial position of the activation plate
     public bool movingPositive = true; // Flag to track the direction of movement
     public bool startTop = false;
-    public bool on;
 
     private GameObject player; // Reference to the player
 
     void Start()
     {
         initialPosition = transform.position;
-        on = true;
+        initialPlatePosition = basePlate.position.y;
     }
 
     void Update()
     {
-        if (on)
+        if (pressurePlate.position.y < (initialPlatePosition - 0.05))
         {
             if (movementDirection == MovementDirection.Vertical)
             {
