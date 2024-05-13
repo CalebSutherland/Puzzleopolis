@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlatformMovement : MonoBehaviour
+public class MovingPlatform: MonoBehaviour
 {
     public enum MovementDirection { Vertical, HorizontalX, HorizontalZ } // Enum to define movement direction
     public MovementDirection movementDirection = MovementDirection.Vertical; // Default to vertical movement
@@ -16,7 +16,7 @@ public class PlatformMovement : MonoBehaviour
     void Start()
     {
         initialPosition = transform.position;
-        on = true;
+        on = false;
     }
 
     void Update()
@@ -113,21 +113,13 @@ public class PlatformMovement : MonoBehaviour
             player.transform.Translate(Vector3.forward * horizontalMovement);
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void Activate()
     {
-        if (other.CompareTag("Player"))
-        {
-            player = other.gameObject;
-            other.transform.parent = transform; // Parent the player to the platform
-        }
+        on = true;
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            other.transform.parent = null; // Unparent the player from the platform
-            player = null;
-        }
+    public void Deactivate()
+    { 
+        on = false; 
     }
 }
