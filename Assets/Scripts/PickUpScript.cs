@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.HID;
 
 public class PickUpScript : MonoBehaviour
 {
     public GameObject player;
     public Transform holdPos;
+    public GameObject controlText;
 
     public float throwForce = 500f; //force at which the object is thrown at
     public float pickUpRange = 5f; //how far the player can pickup the object from
@@ -27,6 +29,19 @@ public class PickUpScript : MonoBehaviour
     }
     void Update()
     {
+        RaycastHit hit2;
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit2, pickUpRange))
+        {
+            if (hit2.transform.gameObject.tag == "canPickUp")
+            {
+                controlText.SetActive(true);
+            }
+        }
+        else
+        {
+            controlText.SetActive(false);
+        }
+
         if (Input.GetKeyDown(KeyCode.E)) //change E to whichever key you want to press to pick up
         {
             if (heldObj == null) //if currently not holding anything

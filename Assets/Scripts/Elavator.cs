@@ -122,4 +122,27 @@ public class MovingPlatform: MonoBehaviour
     { 
         on = false; 
     }
+
+    /*
+     * Not yet working as intended
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            player = collision.gameObject;
+            player.transform.SetParent(transform, true);
+            Debug.Log("P set");
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            player.transform.SetParent(null, true);
+            player = null;
+            Debug.Log("Exit");
+        }
+    }
+    */
 }
