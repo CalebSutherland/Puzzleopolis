@@ -5986,7 +5986,7 @@ Transform:
   m_GameObject: {fileID: 291734478}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.46, y: 49.81, z: -24.26}
+  m_LocalPosition: {x: -5.72, y: 49.81, z: -24.26}
   m_LocalScale: {x: 1, y: 20, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6756,7 +6756,7 @@ GameObject:
   m_Component:
   - component: {fileID: 482156197}
   m_Layer: 0
-  m_Name: Barriers
+  m_Name: Boundaries
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -19,7 +19,7 @@ public class MovingPlatform: MonoBehaviour
         on = false;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (on)
         {
@@ -124,25 +124,15 @@ public class MovingPlatform: MonoBehaviour
     }
 
     /*
-     * Not yet working as intended
+     * Not yet working as intended*/
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            player = collision.gameObject;
-            player.transform.SetParent(transform, true);
-            Debug.Log("P set");
-        }
+        collision.transform.SetParent(transform);
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            player.transform.SetParent(null, true);
-            player = null;
-            Debug.Log("Exit");
-        }
+        collision.transform.SetParent(null);
     }
-    */
+    
 }
