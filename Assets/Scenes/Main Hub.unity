@@ -23345,11 +23345,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 354443217342769806, guid: 61b245a0d2d9b4d2ca24da4d888a93ef, type: 3}
       propertyPath: sensX
-      value: 800
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 354443217342769806, guid: 61b245a0d2d9b4d2ca24da4d888a93ef, type: 3}
       propertyPath: sensY
-      value: 800
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 3379091008217638838, guid: 61b245a0d2d9b4d2ca24da4d888a93ef, type: 3}
       propertyPath: pickUpText
@@ -23726,7 +23726,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5686866715830350548, guid: 71f884e4886a14404977115204a567ca, type: 3}
       propertyPath: m_IsKinematic
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8039224230451611474, guid: 71f884e4886a14404977115204a567ca, type: 3}
       propertyPath: m_Name

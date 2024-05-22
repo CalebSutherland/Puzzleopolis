@@ -17,12 +17,14 @@ public class ObjectPickup : MonoBehaviour
     {
         this.objectGrabPointTransform = objectGrabPointTransform;
         objectRigidbody.useGravity = false;
+        objectRigidbody.isKinematic = true;
     }
 
     public void Drop()
     {
         this.objectGrabPointTransform = null;
         objectRigidbody.useGravity = true;
+        objectRigidbody.isKinematic = false;
     }
 
     private void FixedUpdate()
