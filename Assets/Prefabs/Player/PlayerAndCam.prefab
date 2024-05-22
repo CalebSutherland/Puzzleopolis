@@ -76,9 +76,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: CameraHolder
       objectReference: {fileID: 0}
+    - target: {fileID: 611070146976438588, guid: 4e9ccbd07df4834469175de54b0a4ef2, type: 3}
+      propertyPath: m_TagString
+      value: MainCamera
+      objectReference: {fileID: 0}
     - target: {fileID: 4500874468796976158, guid: 4e9ccbd07df4834469175de54b0a4ef2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1.47
       objectReference: {fileID: 0}
     - target: {fileID: 4500874468796976158, guid: 4e9ccbd07df4834469175de54b0a4ef2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -86,7 +90,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4500874468796976158, guid: 4e9ccbd07df4834469175de54b0a4ef2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.2
+      value: 4.54
       objectReference: {fileID: 0}
     - target: {fileID: 4500874468796976158, guid: 4e9ccbd07df4834469175de54b0a4ef2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -206,6 +210,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 5399101112916257607, guid: 810d7bcda9a194f49bd0e3b72864b99d, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 5473112086337222462, guid: 810d7bcda9a194f49bd0e3b72864b99d, type: 3}
       propertyPath: whatIsGround.m_Bits
       value: 4096
@@ -224,7 +232,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7122430605354521803, guid: 810d7bcda9a194f49bd0e3b72864b99d, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 8904798909285051261, guid: 810d7bcda9a194f49bd0e3b72864b99d, type: 3}
       propertyPath: m_Layer
