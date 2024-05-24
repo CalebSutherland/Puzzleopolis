@@ -9,83 +9,79 @@ public class MovingPlatform : MonoBehaviour
     private Vector3 initialPosition;
     public bool startTop = false;
     public bool on = false;
-    private float startTime;
 
     private GameObject player;
+    private float progress = 0f;
+    private bool movingPositive = true;
 
     void Start()
     {
         initialPosition = transform.position;
-        startTime = Time.time;
     }
 
     void FixedUpdate()
     {
         if (on)
         {
-            switch (movementDirection)
-            {
-                case MovementDirection.Vertical:
-                    MoveVertically();
-                    break;
-                case MovementDirection.HorizontalX:
-                    MoveHorizontallyX();
-                    break;
-                case MovementDirection.HorizontalZ:
-                    MoveHorizontallyZ();
-                    break;
-            }
+            MovePlatform();
         }
     }
 
-    void MoveVertically()
+    void MovePlatform()
     {
-        float time = Time.time - startTime;
-        float posY = initialPosition.y + Mathf.PingPong(time * movementSpeed, movementDistance) * (startTop ? -1f : 1f);
-        Vector3 newPosition = new Vector3(transform.position.x, posY, transform.position.z);
-        Vector3 deltaPosition = newPosition - transform.position;
-        transform.position = newPosition;
+        float deltaMovement = movementSpeed * Time.fixedDeltaTime;
+
+        if (movingPositive)
+        {
+            progress += deltaMovement;
+            if (progress >= movementDistance)
+            {
+                progress = movementDistance;
+                movingPositive = false;
+            }
+        }
+        else
+        {
+            progress -= deltaMovement;
+            if (progress <= 0f)
+            {
+                progress = 0f;
+                movingPositive = true;
+            }
+        }
+
+        Vector3 targetPosition = initialPosition;
+        switch (movementDirection)
+        {
+            case MovementDirection.Vertical:
+                targetPosition += Vector3.up * (startTop ? -progress : progress);
+                break;
+            case MovementDirection.HorizontalX:
+                targetPosition += Vector3.right * (startTop ? -progress : progress);
+                break;
+            case MovementDirection.HorizontalZ:
+                targetPosition += Vector3.forward * (startTop ? -progress : progress);
+                break;
+        }
+
+        transform.position = targetPosition;
 
         if (player != null)
-            player.transform.Translate(deltaPosition, Space.World);
-    }
-
-    void MoveHorizontallyX()
-    {
-        float time = Time.time - startTime;
-        float posX = initialPosition.x + Mathf.PingPong(time * movementSpeed, movementDistance) * (startTop ? -1f : 1f);
-        Vector3 newPosition = new Vector3(posX, transform.position.y, transform.position.z);
-        Vector3 deltaPosition = newPosition - transform.position;
-        transform.position = newPosition;
-
-        if (player != null)
-            player.transform.Translate(deltaPosition, Space.World);
-    }
-
-    void MoveHorizontallyZ()
-    {
-        float time = Time.time - startTime;
-        float posZ = initialPosition.z + Mathf.PingPong(time * movementSpeed, movementDistance) * (startTop ? -1f : 1f);
-        Vector3 newPosition = new Vector3(transform.position.x, transform.position.y, posZ);
-        Vector3 deltaPosition = newPosition - transform.position;
-        transform.position = newPosition;
-
-        if (player != null)
-            player.transform.Translate(deltaPosition, Space.World);
+        {
+            player.transform.position += targetPosition - transform.position;
+        }
     }
 
     public void Activate()
     {
         on = true;
-        startTime = Time.time; // Reset the start time to synchronize the movement
     }
 
     public void Deactivate()
     {
         on = false;
     }
-    /*
-     * Not yet working as intended*/
+
     private void OnCollisionEnter(Collision collision)
     {
         collision.transform.SetParent(transform);
