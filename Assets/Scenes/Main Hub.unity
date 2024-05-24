@@ -20525,6 +20525,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5387835838635041326, guid: db88a6012939bc44a9b59a2af9fe23da, type: 3}
+      propertyPath: movingPositive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5387835838635041326, guid: db88a6012939bc44a9b59a2af9fe23da, type: 3}
       propertyPath: movementDistance
       value: 5
       objectReference: {fileID: 0}
@@ -21579,6 +21583,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5387835838635041326, guid: db88a6012939bc44a9b59a2af9fe23da, type: 3}
       propertyPath: startTop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5387835838635041326, guid: db88a6012939bc44a9b59a2af9fe23da, type: 3}
+      propertyPath: movingPositive
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5387835838635041326, guid: db88a6012939bc44a9b59a2af9fe23da, type: 3}
@@ -23345,11 +23353,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 354443217342769806, guid: 61b245a0d2d9b4d2ca24da4d888a93ef, type: 3}
       propertyPath: sensX
-      value: 50
+      value: 800
       objectReference: {fileID: 0}
     - target: {fileID: 354443217342769806, guid: 61b245a0d2d9b4d2ca24da4d888a93ef, type: 3}
       propertyPath: sensY
-      value: 50
+      value: 800
       objectReference: {fileID: 0}
     - target: {fileID: 891629322144462774, guid: 61b245a0d2d9b4d2ca24da4d888a93ef, type: 3}
       propertyPath: m_LocalPosition.x

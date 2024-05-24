@@ -1,128 +1,89 @@
 using UnityEngine;
 
-public class MovingPlatform: MonoBehaviour
+public class MovingPlatform : MonoBehaviour
 {
-    public enum MovementDirection { Vertical, HorizontalX, HorizontalZ } // Enum to define movement direction
-    public MovementDirection movementDirection = MovementDirection.Vertical; // Default to vertical movement
-    public float movementDistance = 4f; // Total distance the platform moves
-    public float movementSpeed = 2f; // Speed of the platform's movement
-    private Vector3 initialPosition; // Initial position of the platform
-    public bool movingPositive = true; // Flag to track the direction of movement
+    public enum MovementDirection { Vertical, HorizontalX, HorizontalZ }
+    public MovementDirection movementDirection = MovementDirection.Vertical;
+    public float movementDistance = 4f;
+    public float movementSpeed = 2f;
+    private Vector3 initialPosition;
     public bool startTop = false;
-    public bool on;
+    public bool on = false;
+    private float startTime;
 
-    private GameObject player; // Reference to the player
+    private GameObject player;
 
     void Start()
     {
         initialPosition = transform.position;
-        on = false;
+        startTime = Time.time;
     }
 
     void FixedUpdate()
     {
         if (on)
         {
-            if (movementDirection == MovementDirection.Vertical)
+            switch (movementDirection)
             {
-                // Vertical movement
-                MoveVertically();
-            }
-            else if (movementDirection == MovementDirection.HorizontalX)
-            {
-                // Horizontal movement along the X-axis
-                MoveHorizontallyX();
-            }
-            else if (movementDirection == MovementDirection.HorizontalZ)
-            {
-                // Horizontal movement along the Z-axis
-                MoveHorizontallyZ();
+                case MovementDirection.Vertical:
+                    MoveVertically();
+                    break;
+                case MovementDirection.HorizontalX:
+                    MoveHorizontallyX();
+                    break;
+                case MovementDirection.HorizontalZ:
+                    MoveHorizontallyZ();
+                    break;
             }
         }
     }
 
     void MoveVertically()
     {
-        float verticalMovement = movementSpeed * Time.deltaTime * (movingPositive ? 1f : -1f);
-        transform.Translate(Vector3.up * verticalMovement);
-
-        if (startTop)
-        {
-            if (transform.position.y >= initialPosition.y)
-                movingPositive = false;
-            else if (transform.position.y <= initialPosition.y - movementDistance)
-                movingPositive = true;
-        }
-        else
-        {
-            if (transform.position.y >= initialPosition.y + movementDistance)
-                movingPositive = false;
-            else if (transform.position.y <= initialPosition.y)
-                movingPositive = true;
-        }
+        float time = Time.time - startTime;
+        float posY = initialPosition.y + Mathf.PingPong(time * movementSpeed, movementDistance) * (startTop ? -1f : 1f);
+        Vector3 newPosition = new Vector3(transform.position.x, posY, transform.position.z);
+        Vector3 deltaPosition = newPosition - transform.position;
+        transform.position = newPosition;
 
         if (player != null)
-            player.transform.Translate(Vector3.up * verticalMovement);
+            player.transform.Translate(deltaPosition, Space.World);
     }
 
     void MoveHorizontallyX()
     {
-        float horizontalMovement = movementSpeed * Time.deltaTime * (movingPositive ? 1f : -1f);
-        transform.Translate(Vector3.right * horizontalMovement);
-
-        if (startTop)
-        {
-            if (transform.position.x >= initialPosition.x)
-                movingPositive = false;
-            else if (transform.position.x <= initialPosition.x - movementDistance)
-                movingPositive = true;
-        }
-        else
-        {
-            if (transform.position.x >= initialPosition.x + movementDistance)
-                movingPositive = false;
-            else if (transform.position.x <= initialPosition.x)
-                movingPositive = true;
-        }
+        float time = Time.time - startTime;
+        float posX = initialPosition.x + Mathf.PingPong(time * movementSpeed, movementDistance) * (startTop ? -1f : 1f);
+        Vector3 newPosition = new Vector3(posX, transform.position.y, transform.position.z);
+        Vector3 deltaPosition = newPosition - transform.position;
+        transform.position = newPosition;
 
         if (player != null)
-            player.transform.Translate(Vector3.right * horizontalMovement);
+            player.transform.Translate(deltaPosition, Space.World);
     }
 
     void MoveHorizontallyZ()
     {
-        float horizontalMovement = movementSpeed * Time.deltaTime * (movingPositive ? 1f : -1f);
-        transform.Translate(Vector3.forward * horizontalMovement);
-
-        if (startTop)
-        {
-            if (transform.position.z >= initialPosition.z)
-                movingPositive = false;
-            else if (transform.position.z <= initialPosition.z - movementDistance)
-                movingPositive = true;
-        }
-        else
-        {
-            if (transform.position.z >= initialPosition.z + movementDistance)
-                movingPositive = false;
-            else if (transform.position.z <= initialPosition.z)
-                movingPositive = true;
-        }
+        float time = Time.time - startTime;
+        float posZ = initialPosition.z + Mathf.PingPong(time * movementSpeed, movementDistance) * (startTop ? -1f : 1f);
+        Vector3 newPosition = new Vector3(transform.position.x, transform.position.y, posZ);
+        Vector3 deltaPosition = newPosition - transform.position;
+        transform.position = newPosition;
 
         if (player != null)
-            player.transform.Translate(Vector3.forward * horizontalMovement);
+            player.transform.Translate(deltaPosition, Space.World);
     }
 
     public void Activate()
     {
         on = true;
+        startTime = Time.time; // Reset the start time to synchronize the movement
     }
 
     public void Deactivate()
-    { 
-        on = false; 
+    {
+        on = false;
     }
-
     /*
      * Not yet working as intended*/
     private void OnCollisionEnter(Collision collision)
