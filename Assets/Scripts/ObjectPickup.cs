@@ -8,7 +8,12 @@ public class ObjectPickup : MonoBehaviour
     private Transform objectGrabPointTransform;
     private Collider objectCollider;
 
+    public Transform cam;
+
     private float lerpSpeed = 10f;
+    public float throwForce;
+    public float throwUpwardForce;
+
     private void Awake()
     {
         objectRigidbody = GetComponent<Rigidbody>();
@@ -20,7 +25,7 @@ public class ObjectPickup : MonoBehaviour
         this.objectGrabPointTransform = objectGrabPointTransform;
         objectRigidbody.useGravity = false;
         objectRigidbody.isKinematic = true;
-        StartCoroutine(DelayedDisableCollider());
+        //StartCoroutine(DelayedDisableCollider());
     }
 
     public void Drop()
@@ -28,7 +33,18 @@ public class ObjectPickup : MonoBehaviour
         this.objectGrabPointTransform = null;
         objectRigidbody.useGravity = true;
         objectRigidbody.isKinematic = false;
-        objectCollider.enabled = true;
+        //objectCollider.enabled = true;
+    }
+
+    public void Throw() 
+    {
+        Vector3 forceToAdd = cam.transform.forward * throwForce + transform.up * throwUpwardForce;
+        this.objectGrabPointTransform = null;
+        objectRigidbody.useGravity = true;
+        objectRigidbody.isKinematic = false;
+
+        
+        objectRigidbody.AddForce(forceToAdd, ForceMode.Impulse);
     }
 
     private void FixedUpdate()
@@ -45,4 +61,11 @@ public class ObjectPickup : MonoBehaviour
         yield return new WaitForSeconds(0.1f); // Delay of 0.1 second
         objectCollider.enabled = false;
     }
+
+    /* Potential for future versions but it feels to clunky to try not to drop the box while platforming.
+    private void OnCollisionEnter(Collision collision)
+    {
+        Drop();
+    }
+    */
 }
