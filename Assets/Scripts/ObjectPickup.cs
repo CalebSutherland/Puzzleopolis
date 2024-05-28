@@ -40,9 +40,8 @@ public class ObjectPickup : MonoBehaviour
     {
         Vector3 forceToAdd = cam.transform.forward * throwForce + transform.up * throwUpwardForce;
         this.objectGrabPointTransform = null;
-        objectRigidbody.useGravity = true;
         objectRigidbody.isKinematic = false;
-
+        objectRigidbody.useGravity = true;
         
         objectRigidbody.AddForce(forceToAdd, ForceMode.Impulse);
     }
@@ -56,11 +55,13 @@ public class ObjectPickup : MonoBehaviour
         }
     }
 
+    /*
     private IEnumerator DelayedDisableCollider()
     {
         yield return new WaitForSeconds(0.1f); // Delay of 0.1 second
         objectCollider.enabled = false;
     }
+    */
 
     /* Potential for future versions but it feels to clunky to try not to drop the box while platforming.
     private void OnCollisionEnter(Collision collision)
