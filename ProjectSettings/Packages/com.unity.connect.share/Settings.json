@@ -19,7 +19,7 @@
             {
                 "type": "System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
                 "key": "buildOutputDirList",
-                "value": "{\"m_Value\":\"/Users/kylepinkham/Unity Projects/Puzzleopolis/Builds/Alpha Build/LightingTest/Build/LightingTest;/Users/kylepinkham/Unity Projects/Puzzleopolis/Builds/Alpha Build/LightingTest;C:/Users/suthe/CS410/Group Project/Builds;C:/Users/suthe/CS410/Group Project/WebGL Builds;;;;;;\"}"
+                "value": "{\"m_Value\":\"C:/Users/suthe/CS410/Group Project/Builds;C:/Users/suthe/CS410/Group Project/WebGL Builds;;;;;;;;\"}"
             }
         ]
     }
