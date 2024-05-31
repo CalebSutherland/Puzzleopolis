@@ -68,12 +68,15 @@ public class V2Pickup : MonoBehaviour
         }
 
         if (Input.GetKeyDown(KeyCode.Q)) {
-            if (objectPickup != null && objectPickup.gameObject.tag == "Throwable") {
-                objectPickup.Throw();
-                throwableText.SetActive(false);
+            if (objectPickup != null) {
+                if (objectPickup.gameObject.tag == "Throwable") {
+                    objectPickup.Throw();
+                    objectPickup = null;
+                    throwableText.SetActive(false);
+                }
+                
             }
         }
-
 
     }
 
