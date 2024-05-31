@@ -63,7 +63,6 @@ public class V2Pickup : MonoBehaviour
                 //Holding object
                 objectPickup.Drop();
                 objectPickup = null;
-
                 throwableText.SetActive(false);
             }
         }
