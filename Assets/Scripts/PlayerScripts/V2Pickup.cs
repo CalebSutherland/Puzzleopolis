@@ -11,6 +11,7 @@ public class V2Pickup : MonoBehaviour
     [SerializeField] private LayerMask pickUpLayerMask;
     [SerializeField] private GameObject pickUpText;
     [SerializeField] private GameObject throwableText;
+    [SerializeField] private GameObject buttonText;
 
 
 
@@ -29,18 +30,24 @@ public class V2Pickup : MonoBehaviour
     void Update()
     {
         //Check if in item is in range to be picked up and display text
-        if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit hit2, pickUpDistance))
-        {
-            if (hit2.transform.gameObject.tag == "canPickUp" || hit2.transform.gameObject.tag == "Throwable")
-            {
+        if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit hit2, pickUpDistance)) {
+            if (hit2.transform.gameObject.tag == "canPickUp" || hit2.transform.gameObject.tag == "Throwable") {
                 if (objectPickup == null) { 
-                    pickUpText.SetActive(true); 
+                    pickUpText.SetActive(true);
+                    throwableText.SetActive(false);
+                    buttonText.SetActive(false);
                 }
+            }
+            else if (hit2.transform.gameObject.tag == "Button") {
+                buttonText.SetActive(true);
+                throwableText.SetActive(false);
+                pickUpText.SetActive(false);
             }
         }
         else
         {
             pickUpText.SetActive(false);
+            buttonText.SetActive(false);
         }
 
 
@@ -54,6 +61,7 @@ public class V2Pickup : MonoBehaviour
                         pickUpText.SetActive(false);
 
                         if (objectPickup.gameObject.tag == "Throwable") {
+                            buttonText.SetActive(false);
                             throwableText.SetActive(true);
                             StartCoroutine(HideText(throwableText));
                         }

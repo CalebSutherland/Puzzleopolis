@@ -8,6 +8,7 @@ TagManager:
   - Platform
   - PressurePlate
   - Throwable
+  - Button
   layers:
   - Default
   - TransparentFX
