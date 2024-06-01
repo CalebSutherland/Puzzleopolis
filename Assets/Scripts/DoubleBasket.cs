@@ -2,21 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoublePlateController : MonoBehaviour
+public class MultiPlateController : MonoBehaviour
 {
-    public PlateNoElavator plate1;
-    public PlateNoElavator plate2;
+    public List<PlateNoElavator> plates; // List to store references to multiple plates
     public GameObject targetObject;
 
     void Update()
     {
-        if (plate1.isActivated && plate2.isActivated)
+        bool allActivated = true;
+
+        // Iterate through all plates to check if they are activated
+        foreach (PlateNoElavator plate in plates)
         {
-            targetObject.SetActive(false);
+            if (!plate.isActivated)
+            {
+                allActivated = false;
+                break;
+            }
         }
-        else
-        {
-            targetObject.SetActive(true); // Optionally reactivate the object if any plate is empty
-        }
+
+        // Activate or deactivate the target object based on the plates' status
+        targetObject.SetActive(!allActivated);
     }
 }
