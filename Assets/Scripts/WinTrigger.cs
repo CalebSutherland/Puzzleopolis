@@ -25,6 +25,6 @@ public class WinCollision : MonoBehaviour
     IEnumerator Countdown ()
     {
         yield return new WaitForSeconds(delay);
-        SceneManager.LoadScene(0);
+        youWinText?.SetActive(false);
     }
 }
