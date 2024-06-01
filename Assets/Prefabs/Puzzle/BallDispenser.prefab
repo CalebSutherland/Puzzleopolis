@@ -120,8 +120,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ball: {fileID: 4044969605192187166, guid: bf4f8ccf3f068eb44912eee816e1e7e0, type: 3}
   playerCam: {fileID: 0}
+  playerCollider: {fileID: 0}
   spawnPoint: {fileID: 8620376600462211827}
-  force: {x: 1, y: 0, z: 0}
+  dispenseAlongX: 1
+  forceX: -0.5
+  minZForce: -0.25
+  maxZForce: 0.25
+  forceZ: -0.5
+  minXForce: -0.25
+  maxXForce: 0.25
 --- !u!1 &4002446508963564421
 GameObject:
   m_ObjectHideFlags: 0
