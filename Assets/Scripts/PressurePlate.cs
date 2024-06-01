@@ -17,7 +17,7 @@ public class PressurePlate : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("canPickUp") && !isActivated)
+        if (collision.gameObject.CompareTag("canPickUp") || collision.gameObject.CompareTag("Throwable") && !isActivated)
         {
             isActivated = true;
             ActivatePlatforms();
@@ -32,7 +32,7 @@ public class PressurePlate : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.CompareTag("canPickUp") && isActivated)
+        if (collision.gameObject.CompareTag("canPickUp") || collision.gameObject.CompareTag("Throwable") && isActivated)
         {
             isActivated = false;
             DeactivatePlatforms();
