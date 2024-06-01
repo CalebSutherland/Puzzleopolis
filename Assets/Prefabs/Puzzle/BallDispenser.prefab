@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8973387080281702142}
   - component: {fileID: 2737599182469396006}
   - component: {fileID: 8879003624840887703}
+  - component: {fileID: 8583672317565551220}
   m_Layer: 0
   m_Name: Button
   m_TagString: Button
@@ -105,6 +106,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8583672317565551220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2489220504061187896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53da2e73031cb6e488839c1ecd1d8852, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ball: {fileID: 4044969605192187166, guid: bf4f8ccf3f068eb44912eee816e1e7e0, type: 3}
+  playerCam: {fileID: 0}
+  spawnPoint: {fileID: 8620376600462211827}
+  force: {x: 1, y: 0, z: 0}
 --- !u!1 &4002446508963564421
 GameObject:
   m_ObjectHideFlags: 0
@@ -420,6 +437,37 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &5615164678666006797
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8620376600462211827}
+  m_Layer: 0
+  m_Name: BallSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8620376600462211827
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5615164678666006797}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1.7, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1259957078286091396}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6326886198519216800
 GameObject:
   m_ObjectHideFlags: 0
@@ -456,6 +504,7 @@ Transform:
   - {fileID: 5354604439262887999}
   - {fileID: 2468280199574662662}
   - {fileID: 8754603485750821363}
+  - {fileID: 8620376600462211827}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7862406351144415320

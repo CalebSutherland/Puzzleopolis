@@ -32140,6 +32140,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: BallDispenser
       objectReference: {fileID: 0}
+    - target: {fileID: 8583672317565551220, guid: 715e50908655b5d44b5cf320a01d97b2, type: 3}
+      propertyPath: force.x
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8583672317565551220, guid: 715e50908655b5d44b5cf320a01d97b2, type: 3}
+      propertyPath: maxZForce
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8583672317565551220, guid: 715e50908655b5d44b5cf320a01d97b2, type: 3}
+      propertyPath: minZForce
+      value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8583672317565551220, guid: 715e50908655b5d44b5cf320a01d97b2, type: 3}
+      propertyPath: playerCam
+      value: 
+      objectReference: {fileID: 1149254796}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

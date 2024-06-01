@@ -16,6 +16,7 @@ public class V2Pickup : MonoBehaviour
 
 
     private ObjectPickup objectPickup;
+    private SpawnBall spawnBall;
     
     
     private float pickUpDistance = 3f;
@@ -65,6 +66,15 @@ public class V2Pickup : MonoBehaviour
                             throwableText.SetActive(true);
                             StartCoroutine(HideText(throwableText));
                         }
+                    }
+                    else if (raycastHit.transform.TryGetComponent(out spawnBall)) {
+                        Debug.Log("nice");
+                        spawnBall.Spawn();
+                        buttonText.SetActive(false);
+                    }
+                    else
+                    {
+                        Debug.Log("Nope");
                     }
                 }
             } else {
