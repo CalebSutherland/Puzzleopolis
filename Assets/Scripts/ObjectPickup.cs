@@ -9,6 +9,7 @@ public class ObjectPickup : MonoBehaviour
     private Collider objectCollider;
 
     public Transform cam;
+    public Collider playerCollider;
 
     private float lerpSpeed = 10f;
     public float throwForce;
@@ -25,7 +26,13 @@ public class ObjectPickup : MonoBehaviour
         this.objectGrabPointTransform = objectGrabPointTransform;
         objectRigidbody.useGravity = false;
         objectRigidbody.isKinematic = true;
-        //StartCoroutine(DelayedDisableCollider());
+        //StartCoroutine(DelayedDisableCollider())
+
+        // Ignore collisions between the player and the grabbed object
+        if (playerCollider != null && objectCollider != null)
+        {
+            Physics.IgnoreCollision(playerCollider, objectCollider, true);
+        }
     }
 
     public void Drop()
@@ -34,6 +41,12 @@ public class ObjectPickup : MonoBehaviour
         objectRigidbody.useGravity = true;
         objectRigidbody.isKinematic = false;
         //objectCollider.enabled = true;
+
+        // Re-enable collisions between the player and the dropped object
+        if (playerCollider != null && objectCollider != null)
+        {
+            Physics.IgnoreCollision(playerCollider, objectCollider, false);
+        }
     }
 
     public void Throw() 
@@ -44,6 +57,11 @@ public class ObjectPickup : MonoBehaviour
         objectRigidbody.useGravity = true;
         
         objectRigidbody.AddForce(forceToAdd, ForceMode.Impulse);
+
+        if (playerCollider != null && objectCollider != null)
+        {
+            Physics.IgnoreCollision(playerCollider, objectCollider, false);
+        }
     }
 
     private void FixedUpdate()

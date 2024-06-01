@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8415486451908761308}
   - component: {fileID: 2546863295015818549}
   - component: {fileID: 8977713471773938478}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 3614879242164001266}
   - component: {fileID: 8737956421137596382}
   - component: {fileID: 6617575850257037497}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Button Placeholder
   m_TagString: PressurePlate
   m_Icon: {fileID: 0}

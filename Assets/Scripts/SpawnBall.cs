@@ -6,6 +6,7 @@ public class SpawnBall : MonoBehaviour
 {
     public GameObject ball;
     public Transform playerCam;
+    public Collider playerCollider;
     public Transform spawnPoint;
 
     public float forceX = -3f;
@@ -21,6 +22,7 @@ public class SpawnBall : MonoBehaviour
         if (objectPickup != null)
         {
             objectPickup.cam = playerCam;
+            objectPickup.playerCollider = playerCollider;
         }
 
         Rigidbody rb = newBall.GetComponent<Rigidbody>();

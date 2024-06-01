@@ -6174,6 +6174,11 @@ Transform:
   - {fileID: 159087065}
   m_Father: {fileID: 1134414367}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &263925621 stripped
+CapsuleCollider:
+  m_CorrespondingSourceObject: {fileID: 7835249379160055394, guid: 61b245a0d2d9b4d2ca24da4d888a93ef, type: 3}
+  m_PrefabInstance: {fileID: 791580155321515756}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &273574474
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23440,6 +23445,10 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 1149254796}
+    - target: {fileID: 353785814373001453, guid: bf4f8ccf3f068eb44912eee816e1e7e0, type: 3}
+      propertyPath: playerCollider
+      value: 
+      objectReference: {fileID: 263925621}
     - target: {fileID: 4044969605192187166, guid: bf4f8ccf3f068eb44912eee816e1e7e0, type: 3}
       propertyPath: m_Name
       value: Throwable (1)
@@ -32141,21 +32150,29 @@ PrefabInstance:
       value: BallDispenser
       objectReference: {fileID: 0}
     - target: {fileID: 8583672317565551220, guid: 715e50908655b5d44b5cf320a01d97b2, type: 3}
+      propertyPath: forceX
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8583672317565551220, guid: 715e50908655b5d44b5cf320a01d97b2, type: 3}
       propertyPath: force.x
       value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 8583672317565551220, guid: 715e50908655b5d44b5cf320a01d97b2, type: 3}
       propertyPath: maxZForce
-      value: 3
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 8583672317565551220, guid: 715e50908655b5d44b5cf320a01d97b2, type: 3}
       propertyPath: minZForce
-      value: -3
+      value: -0.25
       objectReference: {fileID: 0}
     - target: {fileID: 8583672317565551220, guid: 715e50908655b5d44b5cf320a01d97b2, type: 3}
       propertyPath: playerCam
       value: 
       objectReference: {fileID: 1149254796}
+    - target: {fileID: 8583672317565551220, guid: 715e50908655b5d44b5cf320a01d97b2, type: 3}
+      propertyPath: playerCollider
+      value: 
+      objectReference: {fileID: 263925621}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
