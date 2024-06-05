@@ -8,6 +8,10 @@ public class WinCollision : MonoBehaviour
 {
     public GameObject youWinText;
     public float delay;
+
+    public GameObject player;
+    public Transform nextSpawn;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,5 +30,6 @@ public class WinCollision : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         youWinText?.SetActive(false);
+        player.transform.position = nextSpawn.position;
     }
 }
