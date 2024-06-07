@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private GameObject hudCanvas = null;
     [SerializeField] private GameObject pauseCanvas = null;
+    [SerializeField] private GameObject settingsCanvas = null;
 
     private void Update()
     {
@@ -17,6 +18,7 @@ public class UIManager : MonoBehaviour
             SetActivePause(true);
         } else if (Input.GetKeyDown(KeyCode.P) && isPaused)
         {
+            SetActiveSettings(false);
             SetActivePause(false);
         }
     }
@@ -44,6 +46,13 @@ public class UIManager : MonoBehaviour
         Cursor.visible = state;
     }
 
+    public void SetActiveSettings(bool state)
+    {
+        settingsCanvas.SetActive(state);
+        pauseCanvas.SetActive(!state);
+    }
+
+
     public void Restart()
     {
         SetActivePause(false);
@@ -60,5 +69,20 @@ public class UIManager : MonoBehaviour
     {
         Debug.Log("Quit");
         Application.Quit();
+    }
+
+    public void Settings()
+    {
+        SetActiveSettings(true);
+    }
+
+    public void Back()
+    {
+        SetActiveSettings(false);
+    }
+
+    public void Resume()
+    {
+        SetActivePause(false);
     }
 }
