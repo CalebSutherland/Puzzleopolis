@@ -21,5 +21,8 @@ public class BankCount : MonoBehaviour
         }
     }
 
-    
+    private void OnTriggerExit(Collider other)
+    {
+        numObjectsIn--;
+    }
 }
