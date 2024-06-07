@@ -14,11 +14,8 @@ public class V2Pickup : MonoBehaviour
     [SerializeField] private GameObject buttonText;
 
 
-
     private ObjectPickup objectPickup;
-    private SpawnBall spawnBall;
-    
-    
+    private SpawnBall spawnBall;    
     private float pickUpDistance = 3f;
 
     // Start is called before the first frame update
@@ -30,16 +27,18 @@ public class V2Pickup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        RaycastHit hit;
+        
         //Check if in item is in range to be picked up and display text
-        if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit hit2, pickUpDistance)) {
-            if (hit2.transform.gameObject.tag == "canPickUp" || hit2.transform.gameObject.tag == "Throwable") {
+        if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out hit, pickUpDistance)) {
+            if (hit.transform.gameObject.CompareTag("canPickUp") || hit.transform.gameObject.CompareTag("Throwable")) {
                 if (objectPickup == null) { 
                     pickUpText.SetActive(true);
                     throwableText.SetActive(false);
                     buttonText.SetActive(false);
                 }
             }
-            else if (hit2.transform.gameObject.tag == "Button") {
+            else if (hit.transform.gameObject.CompareTag("Button")) {
                 buttonText.SetActive(true);
                 throwableText.SetActive(false);
                 pickUpText.SetActive(false);
@@ -53,29 +52,22 @@ public class V2Pickup : MonoBehaviour
 
 
         if (Input.GetKeyDown(KeyCode.E)) {
-            if (objectPickup == null) {
-                //Not holding object
-                if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit raycastHit, pickUpDistance)) {
-                    //Debug.Log(raycastHit.transform);
-                    if (raycastHit.transform.TryGetComponent(out objectPickup)) {
-                        objectPickup.Grab(objectGrabPointTransform);
-                        pickUpText.SetActive(false);
+            if (objectPickup == null) { //Not holding object
+                Debug.Log(hit);
+                if (hit.transform.TryGetComponent(out objectPickup)) {
+                    //Debug.Log(hit);
+                    objectPickup.Grab(objectGrabPointTransform);
+                    pickUpText.SetActive(false);
 
-                        if (objectPickup.gameObject.tag == "Throwable") {
-                            buttonText.SetActive(false);
-                            throwableText.SetActive(true);
-                            StartCoroutine(HideText(throwableText));
-                        }
-                    }
-                    else if (raycastHit.transform.TryGetComponent(out spawnBall)) {
-                        Debug.Log("nice");
-                        spawnBall.Spawn();
+                    if (objectPickup.gameObject.CompareTag("Throwable")) {
                         buttonText.SetActive(false);
+                        throwableText.SetActive(true);
+                        StartCoroutine(HideText(throwableText));
                     }
-                    else
-                    {
-                        Debug.Log("Nope");
-                    }
+                }
+                else if (hit.transform.TryGetComponent(out spawnBall)) {
+                    spawnBall.Spawn();
+                    buttonText.SetActive(false);
                 }
             } else {
                 //Holding object
@@ -87,7 +79,7 @@ public class V2Pickup : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Q)) {
             if (objectPickup != null) {
-                if (objectPickup.gameObject.tag == "Throwable") {
+                if (objectPickup.gameObject.CompareTag("Throwable")) {
                     objectPickup.Throw();
                     objectPickup = null;
                     throwableText.SetActive(false);
